@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+	  <p>
+	  So yeah, I lied. I've been both lazy and busy lately, but school's out so the busy part is not an excuse. So now I'm going to do a few things for my non existant viewers. I am committed to 1. Posting one new blog post a day until I go on vacation (starting around the second week of June.<br>
+	  2. Continuing with some inconsistent posts while on vacation before I leave for 3 weeks in the third week of June and will not be able to write any posts. Maybe I'll get my friends to add some posts for me that I send them but we'll see. I am also committed to making this site actually<br>
+	  look alright before I leave. I guess I also want to stream and my goal is to go live for longer than an hour and a half which is about my longest stream. It would have to be when the house is empty but whatever. Now I want to talk about a recent project: the vex iq brain video player<br>
+	  </p>
+	  <h1>Main Portion</h1>
+	  <p>Originally there was going to be something written by the project leader Blue222 in the article but that didn't happen so I need to pad out this line for formatting. There is a robotics company called vex and one of their competition lines is vex iq, though you may know <br>
+	  them from hexbug products, like those vibrators I mean hexbug nanos (god that line would work so much better in video form). This vex iq brain has different ports and shit for controlling motors and sensors but we don't need all of that. All we need is the glorious screen. 107 <br>
+	  pixels long, 159 wide, all sorts of colors. Controllable through vex's C++ programming language. Not to mention the thing that makes this possible: the sd card slot. Originally this project was going to be two parts, vex video and vex music. Yes it can play sound. <br>
+	  Now I have to talk about why vex music failed. We wanted it to play bad apple. The programming language has a play sound and play note command so we thought this would be easy. The first issue we landed on was that the Generation 2 brain we had couldn't play flat notes. Blue222<br>
+	  tried out a Generation 1 brain with the RobotC language and seemed to make the thing work but we ran into another problem: chords. How do we play these. We, sadly could not figure this out. We had an idea of somehow changing the software of the brain to replace the hard coded<br>
+	  sounds in the playSound function with our own music but it appears that we can't. I guess vex doesn't want us to tamper with the brains because then we could cheat in competitions or something (even though their v5 product can literally run doom). Maybe it's possible to load<br>
+	  custom firmware on the iq brains but Blue222 is a programmer and I am a bad programmer so this is not our expertise. In fact, I'm not even sure firmware is the right term here. The basic outcome of the situation is that vex music had to be scrapped. <br>
+	  However, vex video was a success. So we thought of a few different solutions to getting video (or rather a sequence of images we could stitch together later) onto the brain. My first thought was that we should store the location of every pixel and its color which is similar<br>
+	  to what I tried to do on a previous failed bad apple project because python would update an array fine one time and then REFUSED TO DO IT THE REST OF THE TIME. I'm still pissed off because of that but whatever. However, storing 17013 hex codes per frame is storage consuming<br>
+	  and reading that is also time consuming this was ruled out. We decided to format the txt files we fed the brain in the folloding way, explained by Blue222
+	  <br>
+<blockquote>
+My first thought of how to store the images was to do something like what they did in <a href="https://www.youtube.com/watch?v=EZpZwunMzuE">this youtube video</a><br> each frame is split up into as few rectangles as possible, minimizing the number of draw commands to be run on the brain as well as the number of coordinates to be stored.  <br>
+	  The problem with this is I had no idea how to program it, so instead I went with a different approach. Every frame is split into horizontal lines(shown in red below)
+<br><img src="img/redline.png"><br>
+On the brain each of these lines would be drawn individually, reproducing the image without having to store every pixel.
+This worked fine with individual images, but the problems came when doing the entire video, the brain simply didnt have enough storage. <br>
+This is where the sd card came in clutch, the brain could read txt files off of the sd card and the txt files could store the information. The brain was unable to load the entire txt at once(due to its lack of ram) so I found the easiest way to go about drawing the image was to load it line by line.  <br>
+Each line to draw on the screen would be 3 lines in the txt file, the starting x, ending x, and y. Since they are horizontal lines and we only need to store one color of lines(the rest is obviously going to be the other color because its black and white) this is all that's required to draw each line.
+	 <br>
+</blockquote>
+Thank you Blue222 for writing that. So before this point in the story I was basically just a person who sat back and gave a few ideas but did 0 programming or helping. But Blue222 was saying how slow his laptop was post processing the video and I said I would lend<br>
+	  him my computer resources as I have the better than his laptop 12700KF and 4060. The post processing script basically took a rectangle that was drawn in alternating colors on the right side of each frame and grabbed the first frame it changed color and deleted all the other frames<br>
+	  With a 25 gigabyte folder of images this would be resource intensive. After being a dumbass and not adding enough padded zeroes and putting the correct filenames and cding into the directory, I finally managed to cut all of the fat frames and stitch the remaining frames back<br>
+	  in shutter encoder. I sent the video to Blue222, and then he added the music which actually synced to the video and <a href ="https://www.youtube.com/watch?v=Q7bvlpuKZhE">uploaded it to his youtube channel.</a> This is when my dumbass comes in hard. I said I was going to<br>
+	  make a color version. This basically needed to be done in 1 day as we needed to return the brain before school ended. This felt impossible just saying it as I had to go from 2 colors to 16 million. However I was armed with the knowledge that the vex screen could display any hex code<br>
+	  and not just the 10 preprogrammed ones. Also Blue222 had already written code to get red, green, and blue values, which he just took if the red value was greater or less than 100 to see black or white. I could use this code combined with more code from the internet to convert<br>
+	  rgb values to hex codes to get the hex codes. Then Blue222 revised the txtgen code to insert this because I had no clue how adding things or reading things from txt files works. He also did all of the c programming changes because once again, I didn't understant txt reading.<br>
+	  I'm confident I could have done the rest if I knew how to do that but I don't. Then he ran the txtgen and the c code on the brain and sent the video back to me as he had done for the bad apple. The c code on the brain apparently had an issue of starting at a later frame so the<br>
+	  audio can't be synced and the frames take so long to render that the post processing code doesn't work well so their are extra frames and the video is a slow motion epilepsy warning and we didn't even go from the random later frame to the end because it took so long to render<br>
+	  and we called it quits after an hour and so many issues that we'll maybe solve after the time of writing but at the current moment, the video is my kind of slow motion epilepsy warning goddammit. Blue222 will post the source code to his GitHub eventually but he says<br>
+	  he wants to touch the code up and add command line arguments. I look forward to writing more posts even though this short looking one took me like an hour, goodbye. Also I meant to post this on the 30th of May but I had to wait for Blue222's section and for him to proofread the<br>
+	  explanations. There will still be a new article up today. Edit: I forgot to write another article for May 31st because I was busy trying to get Blue222's section which he didn't know what to write so it was scrapped entirely. It is June 1st and I am already playing catch up<br>
+	  before the announcement is finished.
+	  </p>
+  </body>
+</html>
