@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+	  <h1>I am a server admin.</h1>
+	  <p>First things first, I want to clear up what a server even is. I'm sure that all of the amazing people who read this blog know but a lot of people think it's some spooky term. The term server is more of a role for computers than the type of computer. Many computers marketed as servers<br>
+	  use the same parts you and I have in our computers but arranged in a different form factor and better cooled, but this is not what I consider a server. My definition for server is the computer that is specialized to serve other computers content, whether that be a website, files,<br>
+	  a database, email services, web proxies, etc. I run a server that is multifunctional. It is my own computer, being some old Windows 8 Toshiba computer my mom gave me. It serves the purposes of being a game server, media server, and file server as well as providing Wireguard into<br>
+	  my network. My goal in this article is to demistify servers and talk about some of my experiences running one. Also shout out to the youtube channel Kalos Likes Computers and the video The $0 Home Server for much of the information it took to set this up.</p>
+	  <h2>Oh no, security</h2>
+	  <p>One big things with running a server on your own network is security. You are opening ports on your router and in many cases like mine, giving people your ip which they can use with these ports to DDos you. I only give the ip to people I know in real life and trust even though it is<br>
+	  very hard to do something with my ip. Unless you are a fed who is going directly to the ISP with a subpoena asking for the address of a certain ip who was doing certain things, you can't find someone's address just from the ip alone. Sometimes I do worry some troll will decide to DDos<br>
+	  me. I don't really care though, as everyone in my house will just think it's AT&T being stupid as usual until I can close the ports. I will probably start monitoring network traffic more with Wireshark. I don't think port forwarding is as insecure as some people think and to be honest<br>
+	  I don't really want to deal with reverse proxies and stuff. Now that I'm over that, I can talk about the fun stuff.
+	  <h2>My game server<h2>
+	  <p>1. No, I will not be giving you my ip to join it. I do not have a domain yet. I do run a minecraft server that I and a few close friends play on. I only run it when I am awake because I do not hire anyone to moderate and don't want anyone I don't know to join. I should probably just<br>
+	  go based on a whitelist system but I'm not sure if you can go by ip because I have to run the server in offline mode for reasons. I am considering running a Terraria server too because I just got the game but I don't know yet. Also if Factorio ever goes on sale I might run a Factorio<br>
+	  server. I haven't had many issues running this part so far except for the fact that I didn't want to have to keep manually running the jar file so I ended up making a systemd service for it. Systemd isn't that bad guys. The minecraft server is mostly done but I do also want to add<br>
+	  a way to send notifications to my friends who are presumably also running a background process when the server starts up so I don't have to keep texting them. This goes for the media server too and could be solved by wake on lan but I'll talk about wake on lan later.</p>
+	  <h2>My media server</h2>
+	  <p>I run a Jellyfin media server that is a way to play the shows, movies, and music that I upload using the file server in a cleaner user interface. You should really check it out if you primarily consume media through files and stuff. It has features liek storing the time in  a show<br>
+	  you stopped it so you can replay, it is basically your own streaming service. The only issue I have ran into is metadata. For some reason, even though I feed Jellyfin the artists of a song or album exactly how it asks, with each artist separated by a semicolon, It still will bundle<br>
+	  together some artists for certain albums I have downloaded. These are 1999, The College Dropout, Good Kid m.a.a.d City, Playboi Carti self titled, Doggystyle, Rodeo, and Flower Boy. No matter how much retagging within the server and on the great program Musicbrainz Picard, <br>
+	  I still have over 50 extra artists listed that I can't seem to remove. Oh well, at least the album artist section is clean.</p>
+	  <h2>My samba file server</h2>
+	  <p>Samba is an implementation of the windows SMB protocol. It is mostly just used as a way to load files on my media server and is pretty useful, but very slow. I wanted to talk about ethernet here because besides it, everything works perfectly. My server should probably use ethernet.<br>
+	  There are two reasons for this: Wake on LAN and speed. Wake on LAN wakes up your computer when it recieves something from the ethernet cable. I'm not an expert on it so that's all I'll say. If I had this implemented, I could save so much power, running the server only when needed instead<br>
+	  of 17 hours a day. Speed is one of the biggest issues though. Samba transfers are painfully slow, topping out at around 4 Mbps. When I'm transferring TV episodes on to the server, it takes ages. The cap is because the Wifi card in this thing is limited to Wifi 3 or 4. I have another solution<br>
+	  which is buying a NIC or something (idk what it's called, my networking friend suggested it to me) that has Wifi 6. I would rather use ethernet though because it can also potentially do wake on LAN, although I can't figure out whether my laptop supports it. The problem is that I do<br>
+	  not have an Ethernet or Coax port near my computer. I am considering buying an ethernet over power adapter. I haven't bought anything though because it is like 20 bucks for each and I am stingy as fuck. The only other solution to me is placing my server which is just like a laptop beneath<br>
+	  my router but it would have wires and shit and since my router is right below the main TV in my house, I don't think my parents want to see it. I do wish I had a solution because the slow speeds are quite annoying. I am playing catchup right now and have to write two more articles today<br>
+	  so I'll end off the article here. Thank you for reading :).
+  </body>
+</html>
