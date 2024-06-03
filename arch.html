@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="">
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+	  <h1>I finally switched off of mint</h1>
+	  <p>It's been nearly a year of linux and I decided I need a change. My plan was always to switch to a big boy operating system, but I always ran into issues. But the day of my school dance, I decided to really lock in. I first tried to install nix os.</p>
+	  <h2>Nix OS</h2>
+	  <p>My friend Blue222 who I mention a lot on this blog is a nix os user and has even contributed like one package to the package manager for his printer drivers gave me a usb to install nix os. I had tried this before but the iso never seemed to work. This iso did the same.<br>
+	  This isn't the end of the attempt though. He figured out that the problem may be with the plasma iso so I tried the normal one and it worked. I set up partitions and installed the OS. I added it to grub. Oh wait it didn't work. The listing appeared but I was launched into emergency shell.<br>
+	  We found out that the issue was that my efi partition that included grub was full so I deleted and reinstalled grub. Great thing that my computer booted because I would have to do some major work, probably chrooting into mint to fix grub. I ran os prober through grub update. It said that<br>
+	  it found Nix OS, great. I reboot, no Nix. I spend the next hour reinstalling grub, updating it, doing research, trying to find out what happened but I get nothing. I finally quit and installed the biggest boy: Arch.</p>
+	  <h2>Arch Linux</h2>
+	  <p>Arch was seen as like the final boss of linux to me (although now it sort of feels like it's gentoo or even linux from scratch is) for a long time. It's what everyone based uses (except for Terry Davis (I finally used TempleOS. Very epic)) and I heard it was hard to install. <br>
+	  I had also tried installing it previously but failed as usual. It all worked beautifully until I tried to boot in. This time though, I had a well sized grub partition on my side. I use the same fucking steps I used many times before, and this time everything worked. If you're curious<br>
+	  I might post my list of steps. I booted into the system and it didn't give me an emergency shell. However, I had to login but I realized I never added a user. I did research and there is no default account. I thought I would have to reinstall. But no, I chrooted in, added a user and it<br>
+	  was fine. Second issue: No network. I tried installing iwd in the pacstrap step because that's what I used in the ISO but it didn't work. Something about a service or something not starting. I chrooted in and installed network manager and all was good. Sike, I spent another 30 minutes<br>
+	  trying to figure out nmcli until I gave up and tried nmtui that I found out also came installed. It worked. I installed KDE but had another issue: it came with like no apps. Not even konsole. I couldn't get it installed besides through flathub on the discover store. I hate linux app<br>
+	  stores and flatpaks but I had to bite the bullet. I installed konsole and used konsole to install konsole with pacman. It worked and I deleted the flatpak but I felt defeated. How had I caved to flatpak? But seriously, Arch isn't that hard to install. You copy commands off the wiki<br>
+	  and if that fails the documentation is very good and you can usually solve your problem quickly.</p>
+	  <h2>In conclusion</h2>
+	  <h1>I use arch btw<h1>
+	  
+  </body>
+</html>
