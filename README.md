@@ -1,1 +1,1 @@
-Mmm yes blog
+Mmm yes blog.
